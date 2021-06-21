@@ -1,0 +1,644 @@
+import random
+import time
+import math
+import cmath
+def welcome():
+    print(f'''
+            __________________________________________
+            Welcome to python User Toolbox [xenon.as]
+            ------------------------------------------
+              
+              
+  ''')
+    time.sleep(2)
+    menu()
+def menu():
+    print('Choose an option\n')
+    time.sleep(1)
+    print(f'''
+    (1) Calculator
+    (2) Contacts
+    (3) Games
+    (4) Shut down
+    (5) Restart
+    ''')
+    calc = ['1', 'one', 'calc', 'calculator', 'first', '1st', 'first one', '1st one']
+    cont = ['2', 'two', 'contacts', 'phone', 'phonebook', 'numbers', 'second', '2nd', 'second one', '2nd one']
+    gaming = ['3', 'three', 'third', '3rd', 'third one', '3rd one', 'game', 'games']
+    off = ['4', 'four', 'fourth', '4th', 'fourth one', '4th one', 'off', 'turn off', 'shut down']
+    rest =['5', 'five', 'fifth', '5th', 'last', 'fifth one', '5th one', 'last one', 'restart', 'turn on']
+    choice = input('=> ')
+    if choice.lower() in calc:
+        calculator()
+    elif choice.lower() in cont:
+        contacts()
+    elif choice.lower() in gaming:
+        Games()
+    elif choice.lower() in off:
+        print("\nDon't forget to star it")
+        time.sleep(2)
+        print('\nClosing program....\n')
+        time.sleep(4)
+        print("\n"*800)
+        exit()
+    elif choice.lower() in rest:
+        print('Restarting....')
+        time.sleep(2)
+        print('\n'*500)
+        welcome()
+    else:
+        print('invalid input.')
+        menu()
+def Games():
+    print("Games\n")
+    print("Installed Games: ")
+    print(' 1.Rock paper Scissors')
+    print(' 2.Random number guessing game')
+    print('')
+    print('(3) Back')
+    def guess_game():
+        print('Choose difficulty: ')
+        print('1.Easy')
+        print('2.Normal')
+        print('3.Hard')
+        print('4.Impossible')
+        def guess_retry():
+            print('Retry?')
+            g_retry = input('=> ')
+            yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+            nolist = ["no", "nope", "nah", "no need", "2"]
+            if g_retry.lower() in yeslist:
+                guess_game()
+            elif g_retry.lower() in nolist:
+                print('Exiting....')
+                time.sleep(1)
+                Games()
+            else:
+                  print("invalid input")
+                  guess_retry()
+        difficulty = input('=> ')
+        if difficulty == '1' or difficulty.lower() == 'easy':
+            print('\nEasy mode.\n')
+            print('You have Three chances to guess.')
+            print('Guess a number from 0 to 5')
+            alpha = range(0, 6)
+            computer_guess = random.choice(alpha)
+            x = 0
+            while x<3:
+                user_inp = input('=> ')
+                try:
+                    user_guess = int(user_inp)
+                except ValueError:
+                    print('Enter an integer from 1 to 5')
+                    break
+                    guess_game()
+                if user_guess<computer_guess:
+                    print('Guessed too low')
+                    print('Try higher values\n')
+                    pass
+                elif user_guess>computer_guess:
+                    print('Guessed higher.')
+                    print('Try lower values\n')
+                    pass
+                elif user_guess==computer_guess:
+                    print('Congratulations! Accurate Guessing ability.')
+                    break
+                x+=1
+            while x>=3:
+                print('Chances are over.')
+                print(f'The number is {computer_guess}')
+                break
+            guess_retry()
+        elif difficulty == '2' or difficulty.lower() == 'normal':
+            print('\nNormal mode.\n')
+            print('You have five chances to guess.')
+            print('Guess a number from 6 to 15')
+            alpha = range(6, 16)
+            computer_guess = random.choice(alpha)
+            x = 0
+            while x<5:
+                user_inp = input('=> ')
+                try:
+                    user_guess = int(user_inp)
+                except ValueError:
+                    print('Enter an integer from 6 to 15')
+                    break
+                    guess_game()
+                if user_guess<computer_guess:
+                    print('Guessed lower.')
+                    print('Try higher values\n')
+                    pass
+                elif user_guess>computer_guess:
+                    print('Guessed higher.')
+                    print('Try lower values\n')
+                    pass
+                elif user_guess==computer_guess:
+                    print('Congratulations! Excellent Guessing ability.')
+                    break
+                x+=1
+            while x>=5:
+                print('Chances are over.')
+                print(f'The number is {computer_guess}')
+                break
+            guess_retry()
+        elif difficulty == '3' or difficulty.lower() == 'hard':
+            print('\nHard mode.\n')
+            print('You have seven chances to guess.')
+            print('Guess a number from 20 to 50')
+            alpha = range(20, 51)
+            computer_guess = random.choice(alpha)
+            x = 0
+            while x<7:
+                user_inp = input('=> ')
+                try:
+                    user_guess = int(user_inp)
+                except ValueError:
+                    print('Enter an integer from 20 to 50')
+                    break
+                if user_guess<computer_guess:
+                    print('Guessed lower.')
+                    print('Try higher values\n')
+                    pass
+                elif user_guess>computer_guess:
+                    print('Guessed higher.')
+                    print('Try lower values\n')
+                    pass
+                elif user_guess==computer_guess:
+                    print('Congratulations! Unbeatable Guessing ability.')
+                    break
+                x+=1
+            while x>=7:
+                print('Chances are over.')
+                print(f'The number is {computer_guess}')
+                break
+            guess_retry()
+        elif difficulty == '4' or difficulty.lower() == 'impossible':
+            print('\nImpossible mode.\n')
+            print('This mode is literally Unbeatable.')
+            print('You have eight chances to guess.')
+            print('Guess a number from 1 to 60')
+            alpha = range(1, 61)
+            computer_guess = random.choice(alpha)
+            x = 0
+            while x<8:
+                user_inp = input('=> ')
+                try:
+                    user_guess = int(user_inp)
+                except ValueError:
+                    print('Enter an integer from 1 to 60')
+                    break
+                if user_guess<computer_guess:
+                    print('Guessed lower.')
+                    print('Try higher values\n')
+                    pass
+                elif user_guess>computer_guess:
+                    print('Guessed higher.')
+                    print('Try lower values\n')
+                    pass
+                elif user_guess==computer_guess:
+                    print('\nWHOA! Man it\'s crazy. Literally it\'s crazy!')
+                    print('You made it Possible!')
+                    print('Congratulations! You\'re the man with a sixth sense!\n')
+                    time.sleep(4)
+                    break
+                x+=1
+            while x>=8:
+                print('Chances are over.')
+                print(f'The number is {computer_guess}')
+                break
+            guess_retry()
+        else:
+          print("\ninvalid input\n")
+          guess_game()
+    def RPS():
+        x = 2
+        computer_choice_list = 'rock', 'paper', 'scissor'
+        rocklist = 'rock', 'r', '1', '1st one', 'first one', '1st', 'first', '👊'
+        paperlist = 'paper', 'p', '2', '2nd one', 'second one', '2nd', 'second', '✋'
+        scissorlist = 'scissor', 's', '3', '3rd one', 'third one', '3rd', 'third', 'last one', 'last', '✌'
+        get_out = 'exit', 'quit', 'back', 'off', 'get out', 'out', 'close', 'turn off', 'e', 'q', 'o', 'c'
+        print('\nChoose any of these.\nRock/paper/scissor. (or exit)')
+        user_choice = input('=> ')
+        computer_choice = random.choice(computer_choice_list)
+        if user_choice.lower() in rocklist and computer_choice == 'rock':
+            print('\nComputer = rock 👊 \nYou = rock 👊.')
+            print('--Match tied--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in paperlist and computer_choice == 'paper':
+            print('\nComputer = paper ✋ \nYou = paper ✋')
+            print('--Match tied--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in scissorlist and computer_choice == 'scissor':
+            print('\nComputer = scissor ✌ \nYou = scissor ✌')
+            print('--Match tied--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in rocklist and computer_choice == 'scissor':
+            print('\nComputer = scissor ✌ \nYou = rock 👊 ')
+            print('--Congratulations! You win--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in paperlist and computer_choice == 'rock':
+            print('\nComputer = rock 👊 \nYou = paper ✋')
+            print('--Congratulations! You win--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in scissorlist and computer_choice == 'paper':
+            print('\nComputer = paper ✋ \nYou = scissor ✌')
+            print('--Congratulations! You win--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in rocklist and computer_choice == 'paper':
+            print('\nComputer = paper ✋ \nYou = rock 👊 ')
+            print('--You lose--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in paperlist and computer_choice == 'scissor':
+            print('\nComputer = scissor ✌ \nYou = paper ✋ ')
+            print('--You lose--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in scissorlist and computer_choice == 'rock':
+            print('\nComputer = rock 👊 \nYou = scissor ✌')
+            print('--You lose--')
+            time.sleep(x)
+            RPS()
+        elif user_choice.lower() in get_out:
+            print('Closing Rock Paper Scissors....\n')
+            time.sleep(2)
+            Games()
+        else:
+            print('invalid input\n')
+            time.sleep(1)
+            RPS()
+    rps = ['1', 'one', 'first', 'first one', '1st', '1st one', 'rps', 'rock paper scissors']
+    rand_num = ['2', 'two', 'second', '2nd', 'second one', '2nd one', 'random', 'random number', 'guessing game', 'random number guessing game', 'guessing']
+    game_choice = input('=> ')
+    if game_choice.lower() in rps:
+        print('Opening Rock Paper Scissors...')
+        time.sleep(2)
+        print('\nRock Paper Scissors\n')
+        print('You can write \'rock\', \'paper\' or \'scissor\' \nor write like \'r\', \'p\', \'s\'\nfor rock, paper, scissor respectively.')
+        print('Also You can write 1 for rock and 2 for paper and\n3 for scissor.')
+        print('Write Exit/Close to close the program')
+        time.sleep(3)
+        RPS()
+    elif game_choice.lower() in rand_num:
+        print('Opening Random number guessing game....\n')
+        time.sleep(2)
+        guess_game()
+    elif game_choice == '3' or game_choice.lower() == 'back':
+        print('Closing games...\n')
+        time.sleep(1)
+        menu()
+    else:
+        print("\ninvalid input\n")
+        Games()
+def contacts():
+    print('\nContacts\n')
+    print('1. Dad')
+    print('2. Mom')
+    print('3. Sister')
+    print('4. Brother')
+    print('5. My heart')
+    print('')
+    print('(6) Back')
+    def Dad():
+        print('\nCalling Dad.....\n')
+        time.sleep(5)
+        print('Sorry! You don\'t have enough balance to make a call')
+        print('You have one free message to send')
+        print('Would you like to send a text message?\n')
+        yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+        nolist = ["no", "nope", "nah", "no need", "2"]
+        prompt_text = input('=> ')
+        if prompt_text.lower() in yeslist:
+            input('Type your text here: ')
+            time.sleep(4)
+            print('\nDad: Sorry my dear, I am busy with my office work,')
+            print('       I\'ll knock you later')
+            time.sleep(3)
+            contacts()
+        elif prompt_text.lower() in nolist:
+            print('\nReleasing call....')
+            time.sleep(2)
+            print('\nCall ended.')
+            time.sleep(1)
+            contacts()
+        else:
+            print('\nCall ended\n')
+            contacts()
+    def Mom():
+        print('\nCalling Mom.....\n')
+        time.sleep(5)
+        print('Sorry! You don\'t have enough balance to make a call')
+        print('You have one free message to send.')
+        print('Would you like to send a text message?\n')
+        yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+        nolist = ["no", "nope", "nah", "no need", "2"]
+        prompt_text = input('=> ')
+        if prompt_text.lower() in yeslist:
+            input('Type your text here: ')
+            time.sleep(4)
+            print('\nMom: Honey, sorry to say but I am in a teacher\'s meeting.')
+            print('     Knock me later')
+            time.sleep(3)
+            contacts()
+        elif prompt_text.lower() in nolist:
+            print('\nReleasing call....\n')
+            time.sleep(2)
+            print('Call ended.\n')
+            time.sleep(1)
+            contacts()
+        else:
+            print('\nCall ended\n')
+            contacts()
+    def Sister():
+        print('\nCalling Sister.....\n')
+        time.sleep(5)
+        print('Sorry! You don\'t have enough balance to make a call')
+        print('You have one free message to send.')
+        print('Would you like to send a text message?\n')
+        yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+        nolist = ["no", "nope", "nah", "no need", "2"]
+        prompt_text = input('=> ')
+        if prompt_text.lower() in yeslist:
+            input('Type your text here: ')
+            time.sleep(4)
+            print('\nSister: Brother I\'m hanging out with my friends.')
+            print('        I\'ll be back in an hour.')
+            time.sleep(3)
+            contacts()
+        elif prompt_text.lower() in nolist:
+            print('\nReleasing call....\n')
+            time.sleep(2)
+            print('Call ended.\n')
+            time.sleep(1)
+            contacts()
+        else:
+            print('Call ended')
+            contacts()
+    def Brother():
+        print('\nCalling Brother.....\n')
+        time.sleep(5)
+        print('Sorry! You don\'t have enough balance to make a call')
+        print('You have one free message to send.')
+        print('Would you like to send a text message?\n')
+        yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+        nolist = ["no", "nope", "nah", "no need", "2"]
+        prompt_text = input('=> ')
+        if prompt_text.lower() in yeslist:
+            input('Type your text here: ')
+            time.sleep(4)
+            print('\nBrother: I\'m dating with my girlfriend.')
+            print('         Don\'t disturb me again stupid!')
+            time.sleep(3)
+            contacts()
+        elif prompt_text.lower() in nolist:
+            print('\nReleasing call....')
+            time.sleep(2)
+            print('\nCall ended.')
+            time.sleep(1)
+            contacts()
+        else:
+            print('\nCall ended\n')
+            contacts()
+    def Darling():
+        print('\nCalling My Heart.....\n')
+        time.sleep(5)
+        print('Sorry! You don\'t have enough balance to make a call')
+        print('You have one free message to send.')
+        print('Would you like to send a text message?\n')
+        yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+        nolist = ["no", "nope", "nah", "no need", "2"]
+        prompt_text = input('=> ')
+        if prompt_text.lower() in yeslist:
+            input('Type your text here: ')
+            time.sleep(4)
+            print('\nMy Heart: You little piece of shit! How dare you text me again.')
+            print('          Did you forget we had breakup last week?')
+            print('          I\'m dating with my new partner.')
+            print('          Don\'t disturb me ever again!')
+            time.sleep(6)
+            contacts()
+        elif prompt_text.lower() in nolist:
+            print('\nReleasing call....\n')
+            time.sleep(2)
+            print('Call ended.\n')
+            time.sleep(1)
+            contacts()
+        else:
+            print('\nCall ended\n')
+            contacts()
+    dad1 = ['1', 'dad']
+    mom2 = ['2', 'mom']
+    sister3 = ['3', 'sister']
+    brother4 = ['4', 'brother', 'bro']
+    heart5 = ['5', 'my heart', 'darling', 'heart', 'my']
+    back6 = ['6', 'back']
+    cont_choice = input('Choose a contact number: ')
+    if cont_choice.lower() in dad1:
+        Dad()
+    elif cont_choice.lower() in mom2:
+        Mom()
+    elif cont_choice.lower() in sister3:
+        Sister()
+    elif cont_choice.lower() in brother4:
+        Brother()
+    elif cont_choice.lower() in heart5:
+        Darling()
+    elif cont_choice.lower() in back6:
+        menu()
+    else:
+      print("\ninvalid input.\n")
+      contacts()
+def calculator():
+    print('Choose Calculator type.\n')
+    print(f'''
+    (1) Normal calculator
+    (2) Quadratic equation solution
+    (3) age calculator
+    (4) main menu
+    ''')
+    def restart_age():
+        print('\nCalculate age again?')
+        age_choice = input('=> ')
+        yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+        nolist = ["no", "nope", "nah", "no need", "2"]
+        if age_choice.lower() in yeslist:
+            age_calc()
+        elif age_choice.lower() in nolist:
+            calculator()
+    def age_calc():
+        print('\nAge calculator')
+        print('-----------------\n')
+        present = input('Enter the current year: ')
+        oldest = input('Enter your birth year: ')
+        try:
+            years = float(present)-float(oldest)
+            months = years*12
+            days = months*365
+            hours = days*24
+            minutes = hours*60
+            seconds = minutes*60
+        except ValueError:
+            print('\nEnter in numbers please.\n')
+            time.sleep(1)
+            age_calc()
+        print(f'''
+Therefore you are {years} years old,
+again you are {months} months old,
+or you are {days} days old,
+or you are {hours} hours old,
+or you are {minutes} minutes old,
+lastly you are {seconds} seconds old,
+        ''')
+        restart_age()
+    def restart_quad():
+        print('Calculate again?')
+        yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+        nolist = ["no", "nope", "nah", "no need", "2"]
+        rest_quad_choice = input('=> ')
+        if rest_quad_choice.lower() in yeslist:
+            quadratic()
+        elif rest_quad_choice.lower() in nolist:
+            calculator()
+        else:
+            print('invalid input')
+            restart_quad()
+    def quadratic():
+        print("Quadratic Equation")
+        print("ax²+ bx + c = 0 , [a≠0] ")
+        print("")
+        input_a = input("a = ")
+        input_b = input("b = ")
+        input_c = input("c = ")
+        try:
+            a = float(input_a)
+            b = float(input_b)
+            c = float(input_c) 
+        except ValueError:
+            print('Enter valid numbers only please')
+            print('\n')
+            quadratic()
+        print('\n' + str(input_a) + "x² + " + str(input_b) + "x + " + str(input_c) + " = 0")
+        print("")
+        try:
+              value1 = (-b+math.sqrt(pow(b, 2)-4*a*c))/(2*a)
+              value2 = (-b-math.sqrt(pow(b, 2)-4*a*c))/(2*a)
+              print("")
+              print("x1 = " + str(value1))
+              print("x2 = " + str(value2))
+              print('\n the values of \'x\' are real')
+        except ValueError:
+              value1 = (-b+cmath.sqrt((b**2)-4*a*c))/(2*a)
+              value2 = (-b-cmath.sqrt((b**2)-4*a*c))/(2*a)
+              print("")
+              print("x1 = " + str(value1))
+              print("x2 = " + str(value2))
+              print("\nThe values of 'x' are imaginary")
+        except ZeroDivisionError:
+              print('\'a\' should not be equal to zero')
+              quadratic()
+        restart_quad()
+    def restart_calc():
+        print('Calculate again?')
+        rest_choice = input('=> ')
+        yeslist = ["yes", "yeah", "sure", "of course", "1", "yep", "yup", "yap","ok", "okay", "okh", "yah"]
+        nolist = ["no", "nope", "nah", "no need", "2"]
+        if rest_choice.lower() in yeslist:
+            norm_calc()
+        elif rest_choice.lower() in nolist:
+            calculator()
+        else:
+            print('invalid input')
+            restart_calc()
+    def norm_calc():
+        print("")
+        print("Choose an operator")
+        print("1.Add")
+        print("2.Subtract")
+        print("3.Multiply")
+        print("4.Divide")
+        print("5.Power")
+        print("6.Square root")
+        choice = str(input("=> "))
+        op = str(choice.lower())
+        addlist = str("Add"), str("add"), str("ADD"), str("1"), str("+"), str("Addition"), str("addition"), str("ADDITION"), str("First one"), str("first one"), str("FIRST ONE"), 
+        sublist = str("Subtract"), str("subtract"), str("SUBTRACT"), str("2"), str("Subtraction"), str("subtraction"), str("SUBTRACTION"), str("-"), str("Second one"), str("second one"), str("SECOND ONE")
+        multilist = str("Multiply"), str("multiply"), str("MULTIPLY"), str("3"), str("x"), str("Multiplication"), str("multiplication"), str("MULTIPLICATION"), str("*"), str("Third one"), str("third one"), str("THIRD ONE")
+        divlist = str("Divide"), str("divide"), str("DIVIDE"), str("4"), str("Division"), str("division"), str("DIVISION"), str("/"), str("Fourth one"), str("fourth one"), str("FOURTH ONE")
+        powlist = str("Power"), str("power"), str("POWER"), str("5"), str("^"), str("Powering"), str("powering"), str("POWERING"), str("Fifth one"), str("fifth one"), str("FIFTH ONE")
+        rootlist = str("Square root"), str("square root"), str("SQUARE ROOT"), str("6"), str("Root"), str("root"), str("ROOT"), str("Sixth one"), str("sixth one"), str("SIXTH ONE")
+        try:
+            if op in addlist:
+                num1 = float(input("First number:=> "))
+                num2 = float(input("Second number:=> "))
+                result = num1+num2
+                print("Result is: ")
+                print(result)
+                restart_calc()
+                
+            elif op in sublist:
+                num1 = float(input("First number:=> "))
+                num2 = float(input("Second number:=> "))
+                result = num1-num2
+                print("Difference: ")
+                print(result)
+                restart_calc()
+                
+            elif op in multilist:
+                num1 = float(input("Multiplicant:=> "))
+                num2 = float(input("Multiplier:=> "))
+                result = num1*num2
+                print("Product: ")
+                print(result)
+                restart_calc()
+
+            elif op in divlist:
+                num1 = float(input("Divident:=> "))
+                num2 = float(input("Divisor:=> "))
+                result = num1/num2
+                print("Quotient: ")
+                print(result)
+                restart_calc()
+                
+            elif op in powlist:
+                num1 = (input("Base number:=> "))
+                num2 = (input("Exponent:=> "))
+                result = math.pow(float(num1), float(num2))
+                print(str(num1) + " to the power " + str(num2) + " is: ")
+                print(result)
+                restart_calc()
+                
+            elif op in rootlist:
+                num1 = float(input("Enter the number:=> " ))
+                result = math.sqrt(num1)
+                print("Square root of the given number is: ")
+                print(result)
+                restart_calc()
+            else:
+                print('invalid input\n')
+                norm_calc()
+        except ValueError:
+            print('Enter valid numbers please.\n')
+            norm_calc()
+    normal_calculator = ['1', 'one', 'Normal calculator', 'normal one', 'first', '1st', 'first one', '1st one']
+    equation = ['quadratic', 'equation', 'quadratic equation', 'second', '2nd', 'second one', '2nd one', 'qudratic equation solution', 'quadratic equation calculator', '2', 'two']
+    age = ['age', 'age calculator', 'third', '3rd', 'third one', '3rd one', '3', 'three']
+    m_menu = ['4', 'four', 'fourth', '4th', 'fourth one', '4th one', 'menu', 'main', 'main menu', 'back', 'previous', 'reverse']
+    calc_choice = input('=> ')
+    if calc_choice.lower() in normal_calculator:
+        norm_calc()
+    elif calc_choice.lower() in equation:
+        quadratic()
+    elif calc_choice.lower() in age:
+        age_calc()
+    elif calc_choice.lower() in m_menu:
+        menu()
+    else:
+        print('Invalid input.')
+        calculator()
+welcome()
